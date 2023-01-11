@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+        @font-face {
+            font-family: Coolvetica;
+            src: url('coolvetica.otf');
+        }
+
+        @font-face {
+            font-family: Falling;
+            src: url('falling.otf');
+        }
+
+        @font-face {
+            font-family: Stilu;
+            src: url('Stilu.otf');
+        }
+        @font-face {
+            font-family: Basic;
+            src: url('basic.ttf');
+        }
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-image: url(bg.png);
+            background-size: cover;
+            height: 110vh;
+        }
+
+        body p {
+            font-family: Stilu;
+        }
+        body h1,body h2,body h3 {
+            font-family:Basic;
+        }
+        #giveaway-container {
+            -webkit-box-shadow: 6x 7px 25px 0px rgba(139, 0, 255, 1);
+            -moz-box-shadow: 6px 7px 25px 0px rgba(139, 0, 255, 1);
+            box-shadow: 6px 7px 25px 0px rgba(139, 0, 255, 1);
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #6A00D1;
+            height: fit-content;
+            width: 30vw;
+            border-radius:10px;
+        }
+
+        #giveaway-information-header {
+            display: flex;
+            text-align: center;
+            justify-content: space-around;
+        }
+
+        #giveaway-information-header div {
+            height: fit-content;
+            width: 100%;
+            border-bottom: 1px solid black;
+        }
+
+        #giveaway-information-header div:nth-child(2),
+        #giveaway-information-header div:nth-child(3) {
+            border-left: 1px solid black;
+        }
+
+        #giveaway-description h1 {
+            text-transform: uppercase;
+            text-align: center;
+            font-family: Coolvetica;
+            letter-spacing: 1.5px;
+        }
+
+        #giveaway-description p {
+            text-align: center;
+            margin-left: 10%;
+            margin-right: 10%;
+            max-width: 80%;
+        }
+
+        #image-slide {
+            position: relative;
+        }
+
+        #iphone-image {
+            width: 100%;
+        }
+        .slide-button {
+            background-color: transparent;
+            border: none;
+        }
+
+        .slide-button img {
+            width: 100%;
+        }
+
+        .slide-button img:hover {
+            cursor: pointer;
+        }
+
+        .slide-button:last-of-type img {
+            transform: rotate(180deg);
+        }
+
+        .left-slider {
+            position: absolute;
+            width: 50px;
+            height: 20px;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+        }
+
+        .right-slider {
+            position: absolute;
+            width: 50px;
+            height: 20px;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+        }
+
+        #disclaimer-container {
+            text-align: center;
+        }
+
+        #disclaimer-container p:first-of-type {
+            color: red;
+
+        }
+
+        #disclaimer-container h2 {
+            display: inline;
+        }
+
+        #ways-to-enter-container h3 {
+            text-align: center;
+        }
+        #offers-container div:last-of-type {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        #offers-container div {
+            display: inline-block;
+            width: 100%;
+            height: 50px;
+            background-color: black;
+        }
+
+        #offers-container div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #offers-container div button {
+            margin-right: 15%;
+            width: 20%;
+            height: fit-content;
+        }
+
+        #offers-container div a {
+            margin-left: 15%;
+            max-width: 50%;
+            color: white;
+            text-decoration: none;
+            font-family: sans-serif;
+            position: relative;
+        }
+
+        #offers-container div a::after {
+            top: 20px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            position: absolute;
+            content: '';
+            transform: scaleX(0);
+            transition-duration: 300ms;
+            transform-origin: left;
+        }
+
+        #offers-container div a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .btn-15 {
+            background: #b621fe;
+            border: none;
+            z-index: 1;
+            position: relative;
+            border-radius: 5px;
+            font-family: Falling;
+        }
+
+        .btn-15:after {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 100%;
+            top: 0;
+            right: 0;
+            z-index: -1;
+            background-color: #663dff;
+            border-radius: 5px;
+            box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+                7px 7px 20px 0px rgba(0, 0, 0, .1),
+                4px 4px 5px 0px rgba(0, 0, 0, .1);
+            transition: all 0.3s ease;
+        }
+
+        .btn-15:hover {
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn-15:hover:after {
+            left: 0;
+            width: 100%;
+        }
+
+        .btn-15:active {
+            top: 2px;
+        }
+
+        @media screen and (max-width:1024px) {
+            #giveaway-container {
+                width: 90vw;
+            }
+
+            #giveaway-description h1 {
+                font-size: 1.5em;
+            }
+
+            #offers-container div a {
+                font-size: 0.8em;
+                margin-left: 5%;
+            }
+
+            #offers-container div button {
+                width: 30%;
+                margin-right: 5%;
+            }
+        }
+
+        @media screen and (min-width:1024px) and (max-width:1440px) {
+            #giveaway-container {
+                width: 50vw;
+            }
+        }
+    </style>
+    <script>
+        window.onload = async function () {
+            let mockupOffers = [];
+            let finalOffers = [];
+            let max = 0;
+            let offerContainer = document.querySelector("#offers-container");
+
+            await fetch("http://localhost:5000/offers").then((res) => res.json()).then((data) => {
+                for (let i = 0; i < data.length; i++) {
+                    const obj = {
+                        payout: data[i].payout,
+                        offerlink: data[i].offerlink,
+                        title: data[i].title,
+                    }
+                    mockupOffers.push(obj);
+                }
+                for (let i = 0; i < mockupOffers.length; i++) {
+                    if (mockupOffers[i].payout > max) {
+                        const obj = {
+                            offerlink: mockupOffers[i].offerlink,
+                            titles: mockupOffers[i].title,
+                        }
+                        finalOffers.push(obj);
+                        if (finalOffers.length == 5 || finalOffers.length == mockupOffers.length) {
+                            break;
+                        }
+                    }
+                }
+            })
+            let container = document.querySelector("#offers-container");
+            for (let i = 0; i < finalOffers.length; i++) {
+                let button = document.createElement("button");
+                button.classList.add('custom-btn', 'btn-15');
+                button.append(document.createElement('span'));
+                button.onclick = function () {
+                    setInterval(() => {
+                        fetch("http://localhost:5000/lead").then(response => response.json()).then((data) => console.log(data));
+                    }, 10000);
+                }
+
+                button.querySelector('span').innerHTML = "Click if completed";
+                container.append(document.createElement("div"));
+                container.querySelectorAll("div")[i].append(document.createElement("a"));
+                container.querySelectorAll("div")[i].append(button);
+                container.querySelectorAll("div a")[i].innerHTML = finalOffers[i].titles;
+                container.querySelectorAll("div a")[i].href = finalOffers[i].offerlink;
+
+            }
+        }
+        let rightIt = 0;
+        let leftIt = 2;
+        function slide(direction, el) {
+            let img = ['2.jpg', '3.jpg', '4.jpg'];
+            if (direction == "left") {
+                el.src = img[leftIt];
+                leftIt--;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="giveaway-container">
+        <div id="giveaway-information-header">
+            <div>
+                <p>0
+                <p>
+                <p>
+                    Your Entries
+                </p>
+            </div>
+            <div>
+                <p>0</p>
+                <p>Total Entries</p>
+            </div>
+            <div>
+                <p>0</p>
+                <p>Days Left</p>
+            </div>
+        </div>
+        <div id="giveaway-description">
+            <h1>Get a new Iphone 14 giveaway</h1>
+            <p>Enter to get a chance to win an Iphone 14 and discover abilites of the newest smartphone from the Apple
+                company</p>
+        </div>
+        <div id="image-slide">
+            <button class="slide-button left-slider" onclick="slide('left',document.querySelectorAll('#image-slide img')[1])"><img src="slide.png"></button>
+            <img src="iphone-14.png" id="iphone-image">
+            <button class="slide-button right-slider"><img src="slide.png"></button>
+        </div>
+        <div id="disclaimer-container">
+            <h2>Complete the steps below to get a entry</h2>
+            <br>
+            <p>Disclaimer</p>
+            <p>If you will complete atleast one of the exercises you're already qualified!</p>
+            <p>If you complete all of the offers you will get extra entries!</p>
+        </div>
+        <div id="ways-to-enter-container">
+            <h3>5 ways to enter</h3>
+        </div>
+        <div id="offers-container">
+
+        </div>
+    </div>
+</body>
+
+</html>
